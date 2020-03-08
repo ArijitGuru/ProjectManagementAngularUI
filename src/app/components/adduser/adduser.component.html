@@ -1,25 +1,38 @@
 <div class="container">
     <p class="text text-info">Add User Details:</p>
-    <form (submit)="onSubmit(isEdit)" name="entryform" #form="ngForm" novalidate>
+    <form (submit)="onSubmit(isEdit)" #entryForm="ngForm" novalidate>
         <div class="form-group row">
-            <label for="firstname" class="col-form-label col-sm-2 font-weight-bold">First Name: </label>
-            <input class="form-control form-control-sm col-sm-10" type="text" id="fname" placeholder="Enter first name" [(ngModel)]="user.firstName" name="firstName" autocomplete="off" required>
+            <label for="firstname" class="col-form-label col-md-3 font-weight-bold">First Name: </label>
+            <input class="form-control form-control-md col-md-9" type="text" placeholder="Enter first name" [(ngModel)]="user.firstName" name="firstName" autocomplete="off" #fname="ngModel" required>
         </div>
 
-
+        <div *ngIf="fname.errors?.required && fname.touched" >
+            <p class="text text-danger">*First Name is required.</p>
+        </div>
+        
 
         <div class="form-group row">
-            <label for="lastname" class="col-form-label col-sm-2 font-weight-bold">Last Name: </label>
-            <input class="form-control form-control-sm col-sm-10" type="text" autocomplete="off" placeholder="Enter last name" [(ngModel)]="user.lastName" name="lastName">
+            <label for="lastname" class="col-form-label col-md-3 font-weight-bold">Last Name: </label>
+            <input class="form-control form-control-md col-md-9" type="text" autocomplete="off" placeholder="Enter last name" [(ngModel)]="user.lastName" name="lastName" required #lname="ngModel">
         </div>
+
+        <div *ngIf="lname.errors?.required && lname.touched">
+            <p class="text text-danger">*Last Name is required.</p>
+        </div>
+
         <div class="form-group row">
-            <label for="empid" class="col-form-label col-sm-2 font-weight-bold">Employee ID: </label>
-            <input class="form-control form-control-sm col-sm-10" type="text"
-                placeholder="Enter employee ID" [(ngModel)]="user.employeeId" name="employeeId" autocomplete="off">
+            <label for="empid" class="col-form-label col-md-3 font-weight-bold">Employee ID: </label>
+            <input class="form-control form-control-md col-md-9" type="number"
+                placeholder="Enter employee ID" [(ngModel)]="user.employeeId" name="employeeId" autocomplete="off" #empId="ngModel" required >
         </div>
+
+        <div *ngIf="empId.errors?.required && empId.touched">
+            <p class="text text-danger">*Employee ID is required.</p>
+        </div>
+
         <div class="form-group row">
             <div class="col-sm-12 text-right">
-                <button class="btn btn-primary m-2" type="submit">                
+                <button class="btn btn-primary m-2" type="submit"  [disabled]="entryForm.invalid">                
                 <i [hidden]="isEdit" class="fas fa-plus"></i>
                 <i [hidden]="!isEdit" class="fas fa-wrench"></i>
                 {{isEdit ? 'Update':'Add'}}
