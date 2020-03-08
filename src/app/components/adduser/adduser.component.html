@@ -1,17 +1,20 @@
 <div class="container">
     <p class="text text-info">Add User Details:</p>
-    <form (submit)="onSubmit(isEdit)" name="entryform">
+    <form (submit)="onSubmit(isEdit)" name="entryform" #form="ngForm" novalidate>
         <div class="form-group row">
             <label for="firstname" class="col-form-label col-sm-2 font-weight-bold">First Name: </label>
-            <input class="form-control form-control-sm col-sm-10" type="text" id="fname" placeholder="Enter first name" [(ngModel)]="user.firstName" name="firstName" autocomplete="off">
+            <input class="form-control form-control-sm col-sm-10" type="text" id="fname" placeholder="Enter first name" [(ngModel)]="user.firstName" name="firstName" autocomplete="off" required>
         </div>
+
+
+
         <div class="form-group row">
             <label for="lastname" class="col-form-label col-sm-2 font-weight-bold">Last Name: </label>
-            <input class="form-control form-control-sm col-sm-10" type="text" id="lname"  autocomplete="off" placeholder="Enter last name" [(ngModel)]="user.lastName" name="lastName">
+            <input class="form-control form-control-sm col-sm-10" type="text" autocomplete="off" placeholder="Enter last name" [(ngModel)]="user.lastName" name="lastName">
         </div>
         <div class="form-group row">
             <label for="empid" class="col-form-label col-sm-2 font-weight-bold">Employee ID: </label>
-            <input class="form-control form-control-sm col-sm-10" type="text" id="empid"
+            <input class="form-control form-control-sm col-sm-10" type="text"
                 placeholder="Enter employee ID" [(ngModel)]="user.employeeId" name="employeeId" autocomplete="off">
         </div>
         <div class="form-group row">
@@ -30,7 +33,7 @@
 
     <form class="container">
         <div class="form-group row">
-            <input class="form-control form-control-sm col-sm-4" type="text" id="search" placeholder="&#f002; Search" [(ngModel)]="term" name="search" autocomplete="off">
+            <input class="form-control form-control-sm col-sm-4" type="text" placeholder="&#f002; Search" [(ngModel)]="term" name="search" autocomplete="off">
             <label for="company" class="col-form-label col-sm-1 font-weight-bold">Sort: </label>
             <button class="btn btn-outline-info col-sm-2 mx-1" (click)="sortByFName()">First Name</button>
             <button class="btn btn-outline-info col-sm-2 mx-1" (click)="sortByLName()">Last Name</button>
@@ -49,7 +52,7 @@
                 <li class="list-group-item">
                     <p class="text-left d-inline"><span class="font-weight-bold">First Name: </span>{{ user.firstName }}</p>
                     <div class="float-right">
-                        <button class="btn btn-warning btn-md" (click)="onEditClick(user)"><i class="fas fa-edit"></i> &nbsp;&nbsp;&nbsp;Edit</button>
+                        <button class="btn btn-info btn-md" (click)="onEditClick(user)"><i class="fas fa-edit"></i> &nbsp;&nbsp;&nbsp;Edit</button>
                     </div>
                 </li>
                 <li class="list-group-item">
