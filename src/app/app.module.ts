@@ -5,6 +5,9 @@ import { RouterModule, Routes} from '@angular/router';
 import { HttpClientModule } from '@angular/common/http'; 
 import {FormsModule} from '@angular/forms';
 
+//import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+
+
 
 //Component Imports
 import { AppComponent } from './app.component';
@@ -50,6 +53,7 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     HttpClientModule,
     Ng2SearchPipeModule
+   // NgbModule  
     
   ],
   providers: [UserserviceService],

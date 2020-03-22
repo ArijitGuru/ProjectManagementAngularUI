@@ -1,1 +1,83 @@
-<p>addproject works!</p>
+<div class="container">
+    <p class="text text-info">Add Project Details</p>
+
+    <form #entryProject="ngForm" (submit)="onSubmitProjectForm()" novalidate>
+        <div class="form-group row">
+            <label for="projectName" class="col-form-label col-md-2 font-weight-bold">Project:</label>
+            <input class="form-control form-control-md col-md-10" type="text" placeholder="Enter project name"
+                name="projectName" autocomplete="off" />
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-4">
+                <input type="checkbox" class="form-check-input" id="checkdates" />
+                <label class="form-check-label mb-3" for="checkdates">Set Start and End Date</label>
+            </div>
+            <div class="col-sm-3">
+                <button class="btn btn-info mb-3">Start Date</button>
+            </div>
+            <div class="col-sm-3">
+                <button class="btn btn-info mb-3">End Date</button>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-2 font-weight-bold">
+                <label class="priority">Priority: </label>
+            </div>
+            <div class="col-sm-10">
+                <div class="input-group mb-3">
+                    <input class="form-control slider" type="range" id="volume" min="0" max="30" value="0" step="1" />
+                    <span class="badge badge-primary ml-1">4</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="managerName" class="col-form-label col-md-2 font-weight-bold mb-3">Manager:</label>
+            <input class="form-control form-control-md col-md-6 mb-3" type="text" placeholder="Enter Manager Name"
+                name="managerName" autocomplete="off" />
+            <div class="col-md-2">
+                <button class="btn btn-outline-primary round-button" data-toggle="modal"
+                    data-target="#searchModal">Search</button>
+            </div>
+
+            <!-- Modal -->
+            <div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="searchModalLabel">Modal title</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            Body here
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-sm-8"></div>
+            <div class="col-sm-1">
+                <button class="btn btn-info mb-3">Add</button>
+            </div>
+            <div class="col-sm-1">
+                <button class="btn btn-info mb-3">Reset</button>
+            </div>
+            <div class="col-sm-2"></div>
+        </div>
+        <div class="border-top my-3"></div>
+
+
+    </form>
+
+
+</div>

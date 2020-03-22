@@ -3,17 +3,19 @@
     <form (submit)="onSubmit(isEdit)" #entryForm="ngForm" novalidate>
         <div class="form-group row">
             <label for="firstname" class="col-form-label col-md-3 font-weight-bold">First Name: </label>
-            <input class="form-control form-control-md col-md-9" type="text" placeholder="Enter first name" [(ngModel)]="user.firstName" name="firstName" autocomplete="off" #fname="ngModel" required>
+            <input class="form-control form-control-md col-md-9" type="text" placeholder="Enter first name"
+                [(ngModel)]="user.firstName" name="firstName" autocomplete="off" #fname="ngModel" required>
         </div>
 
-        <div *ngIf="fname.errors?.required && fname.touched" >
+        <div *ngIf="fname.errors?.required && fname.touched">
             <p class="text text-danger">*First Name is required.</p>
         </div>
-        
+
 
         <div class="form-group row">
             <label for="lastname" class="col-form-label col-md-3 font-weight-bold">Last Name: </label>
-            <input class="form-control form-control-md col-md-9" type="text" autocomplete="off" placeholder="Enter last name" [(ngModel)]="user.lastName" name="lastName" required #lname="ngModel">
+            <input class="form-control form-control-md col-md-9" type="text" autocomplete="off"
+                placeholder="Enter last name" [(ngModel)]="user.lastName" name="lastName" required #lname="ngModel">
         </div>
 
         <div *ngIf="lname.errors?.required && lname.touched">
@@ -22,8 +24,8 @@
 
         <div class="form-group row">
             <label for="empid" class="col-form-label col-md-3 font-weight-bold">Employee ID: </label>
-            <input class="form-control form-control-md col-md-9" type="number"
-                placeholder="Enter employee ID" [(ngModel)]="user.employeeId" name="employeeId" autocomplete="off" #empId="ngModel" required >
+            <input class="form-control form-control-md col-md-9" type="number" placeholder="Enter employee ID"
+                [(ngModel)]="user.employeeId" name="employeeId" autocomplete="off" #empId="ngModel" required>
         </div>
 
         <div *ngIf="empId.errors?.required && empId.touched">
@@ -32,21 +34,23 @@
 
         <div class="form-group row">
             <div class="col-sm-12 text-right">
-                <button class="btn btn-primary m-2" type="submit"  [disabled]="entryForm.invalid">                
-                <i [hidden]="isEdit" class="fas fa-plus"></i>
-                <i [hidden]="!isEdit" class="fas fa-wrench"></i>
-                {{isEdit ? 'Update':'Add'}}
+                <button class="btn btn-primary m-2" type="submit" [disabled]="entryForm.invalid">
+                    <i [hidden]="isEdit" class="fas fa-plus"></i>
+                    <i [hidden]="!isEdit" class="fas fa-wrench"></i>
+                    {{isEdit ? 'Update':'Add'}}
                 </button>
-                <button class="btn btn-warning m-2" type="reset" (click)="onResetClick()"><i class="fas fa-undo"></i> Reset</button>
+                <button class="btn btn-warning m-2" type="reset" (click)="onResetClick()"><i class="fas fa-undo"></i>
+                    Reset</button>
             </div>
-            
+
         </div>
     </form>
     <div class="border-top my-3"></div>
 
     <form class="container">
         <div class="form-group row">
-            <input class="form-control form-control-sm col-sm-4" type="text" placeholder="&#f002; Search" [(ngModel)]="term" name="search" autocomplete="off">
+            <input class="form-control form-control-sm col-sm-4" type="text" placeholder="&#f002; Search"
+                [(ngModel)]="term" name="search" autocomplete="off">
             <label for="company" class="col-form-label col-sm-1 font-weight-bold">Sort: </label>
             <button class="btn btn-outline-info col-sm-2 mx-1" (click)="sortByFName()">First Name</button>
             <button class="btn btn-outline-info col-sm-2 mx-1" (click)="sortByLName()">Last Name</button>
@@ -56,32 +60,35 @@
     </form>
 
     <div class="border-top my-3"></div>
-    
-    <p *ngIf="users?.length == 0" >No items to show</p>
+
+    <p *ngIf="users?.length == 0">No items to show</p>
 
     <div *ngFor="let user of users | filter:term">
         <div class="well">
             <ul class="list-group">
                 <li class="list-group-item">
-                    <p class="text-left d-inline"><span class="font-weight-bold">First Name: </span>{{ user.firstName }}</p>
+                    <p class="text-left d-inline"><span class="font-weight-bold">First Name: </span>{{ user.firstName }}
+                    </p>
                     <div class="float-right">
-                        <button class="btn btn-info btn-md" (click)="onEditClick(user)"><i class="fas fa-edit"></i> &nbsp;&nbsp;&nbsp;Edit</button>
+                        <button class="btn btn-info btn-md" (click)="onEditClick(user)"><i class="fas fa-edit"></i>
+                            &nbsp;&nbsp;&nbsp;Edit</button>
                     </div>
                 </li>
                 <li class="list-group-item">
                     <p class="d-inline"><span class="font-weight-bold">Last Name: </span>{{ user.lastName }}</p>
                     <div class="float-right">
-                        <button class="btn btn-danger btn-md" (click)="onDeleteClick(user.userId)"><i class="fas fa-trash-alt"></i> Delete</button>
+                        <button class="btn btn-danger btn-md" (click)="onDeleteClick(user.userId)"><i
+                                class="fas fa-trash-alt"></i> Delete</button>
                     </div>
-                    
+
                 </li>
                 <li class="list-group-item">
                     <p class="d-inline"><span class="font-weight-bold">Employee Id: </span>{{ user.employeeId }}</p>
                 </li>
-                <br/>
+                <br />
             </ul>
         </div>
-        <hr/>
+        <hr />
     </div>
 
 </div>

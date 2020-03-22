@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-addproject',
@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddprojectComponent implements OnInit {
 
+  //@Input() name;
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  onSubmitProjectForm(){
+    console.log("Project Form submitted");
   }
 
 }
