@@ -52,8 +52,8 @@ const appRoutes: Routes = [
     FormsModule,
     RouterModule.forRoot(appRoutes),
     HttpClientModule,
-    Ng2SearchPipeModule
-   // NgbModule  
+    Ng2SearchPipeModule,
+    //NgbModule
     
   ],
   providers: [UserserviceService],
