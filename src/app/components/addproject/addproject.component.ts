@@ -1,5 +1,7 @@
+import { ProjectserviceService } from './../../services/projectservice.service';
 import { Component, OnInit, Input } from '@angular/core';
 import { ConstantPool } from '@angular/compiler';
+
 
 @Component({
   selector: 'app-addproject',
@@ -11,7 +13,7 @@ export class AddprojectComponent implements OnInit {
   //@Input() name;
 
   private priority : number = 0; 
-
+  projects:any[];
   project = {
     projectName:'',
     setDateFlag:'',
@@ -20,16 +22,24 @@ export class AddprojectComponent implements OnInit {
     projectPriority:'',
     managerEmployeeId:'',
     managerFirstName:'',
-    managerLastName:''
+    managerLastName:'',
+    taskCount:'',
+    status:''
   }
 
   private isSearch: boolean = false;
-  constructor() { 
+
+  constructor(public projectService: ProjectserviceService) { 
     this.priority = 0;
+    this.projectService.getProjects().subscribe(projects => {
+      this.projects = projects;
+      console.log(projects);
+    })
+    
   }
 
   ngOnInit() {
-
+    
   }
 
   onSubmitProjectForm(){
@@ -37,6 +47,7 @@ export class AddprojectComponent implements OnInit {
       console.log("Do nothing, search is clicked");
     }else {
       console.log("Project form submitted");
+      console.log (this.project.projectName);
     }
     this.isSearch = false;
   }

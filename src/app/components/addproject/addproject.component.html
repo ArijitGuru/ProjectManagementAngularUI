@@ -5,7 +5,7 @@
         <div class="form-group row">
             <label for="projectName" class="col-form-label col-md-2 font-weight-bold">Project:</label>
             <input class="form-control form-control-md col-md-10" type="text" placeholder="Enter project name"
-                name="projectName" autocomplete="off" [(ngModel)]="project.projectName"/>
+                name="projectName" autocomplete="off" [(ngModel)]="project.projectName" />
         </div>
         <div class="form-group row">
             <div class="col-sm-2"></div>
@@ -17,15 +17,17 @@
             <!--Start Date -->
             <div class="col-sm-3">
                 <label class="form-check-label">Start Date</label>
-                <input type="date" name="bday" max="3000-12-31" min="1000-01-01" class="form-control" [(ngModel)]="project.startDate">
+                <input type="date" name="bday" max="3000-12-31" min="1000-01-01" class="form-control"
+                    [(ngModel)]="project.startDate">
             </div>
 
-            
+
 
 
             <div class="col-sm-3">
                 <label class="form-check-label">End Date</label>
-                <input type="date" name="bday" max="3000-12-31" min="1000-01-01" class="form-control" [(ngModel)]="project.endDate">
+                <input type="date" name="bday" max="3000-12-31" min="1000-01-01" class="form-control"
+                    [(ngModel)]="project.endDate">
             </div>
         </div>
         <div class="form-group row">
@@ -34,7 +36,8 @@
             </div>
             <div class="col-sm-10">
                 <div class="input-group mb-3">
-                    <input class="form-control slider" type="range" min="0" max="30" value="0" step="1" name="priority" [(ngModel)]="project.projectPriority" />
+                    <input class="form-control slider" type="range" min="0" max="30" value="0" step="1" name="priority"
+                        [(ngModel)]="project.projectPriority" />
                     <span class="badge badge-primary ml-1">{{project.projectPriority}}</span>
                 </div>
             </div>
@@ -45,17 +48,17 @@
             <input class="form-control form-control-md col-md-6 mb-3" type="text" placeholder="Enter Manager Name"
                 name="managerName" autocomplete="off" />
             <div class="col-md-2">
-                <button class="btn btn-outline-primary round-button" data-toggle="modal"
-                    data-target="#searchModal" (click)="onSearchClick()">Search</button>
+                <button class="btn btn-outline-primary round-button" data-toggle="modal" data-target="#searchModal"
+                    (click)="onSearchClick()">Search</button>
             </div>
 
-            <!-- Modal -->
+            <!-- Modal Start-->
             <div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel"
                 aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="searchModalLabel">Modal title</h5>
+                            <h5 class="modal-title" id="searchModalLabel">Search Manager</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -74,6 +77,7 @@
                     </div>
                 </div>
             </div>
+            <!--Modal End -->
         </div>
 
         <div class="form-group row">
@@ -82,18 +86,80 @@
                 <button class="btn btn-primary mb-3">Add</button>
             </div>
             <div class="col col-sm-6 text-left">
-                <button class="btn btn-warning mb-3"  type="reset" (click)="onResetClick()">Reset</button>
+                <button class="btn btn-warning mb-3" type="reset" (click)="onResetClick()">Reset</button>
             </div>
-    
+
         </div>
+
         <div class="border-top my-3"></div>
 
-        {{project.projectName}}
-        {{project.setDateFlag}}
-        {{project.startDate}}
-        {{project.endDate}}
-        {{project.projectPriority}}
+        <form class="container">
+            <div class="form-group row">
+                <div class="col col-12">
+                    <input class="form-control form-control-sm col-sm-12" type="text" placeholder="&#f002; Search"
+                    [(ngModel)]="term" name="search" autocomplete="off">
+                    <br>
+                </div>
+                <div class="col">
+                    <label for="company" class="col-form-label col-sm-1 font-weight-bold">Sort: </label>
+                    <button class="btn btn-outline-info col-sm-2 mx-1" (click)="sortByFName()">Start Date</button>
+                    <button class="btn btn-outline-info col-sm-2 mx-1" (click)="sortByLName()">End Date</button>
+                    <button class="btn btn-outline-info col-sm-2 mx-1" (click)="sortByEmpId()">Priority</button>
+                    <button class="btn btn-outline-info col-sm-2 mx-1" (click)="sortByEmpId()">Completed</button>
 
+                </div>
+                
+            </div>
+
+        </form>
+
+        <div class="border-top my-3"></div>
+
+        <p *ngIf="projects?.length == 0">No items to show</p>
+
+        <div *ngFor="let project of projects | filter:term">
+            <div class="well">
+                <ul class="list-group">
+                    <li class="list-group-item">
+
+                        <div class="row">
+                            <div class="col">
+                                <p class="text-left d-left"><span class="font-weight-bold">Project:
+                                    </span>{{ project.project }}</p>
+                                
+                                <div class="row">
+                                    <div class="col">
+                                        <span class="font-weight-bold">No of task:</span>   10
+                                    </div>
+                                    <div class="col">
+                                        <span class="font-weight-bold">Completed:</span> Yes
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <span class="font-weight-bold">Start Date:</span> {{project.startDate}}
+                                    </div>
+                                    <div class="col">
+                                        <span class="font-weight-bold">End Date:</span> {{project.endDate}}
+                                    </div>
+                                </div> 
+                                
+                            </div>
+                            <div class="col-md-auto">
+                                <span class="font-weight-bold">Priority</span> {{project.priority}}
+                            </div>
+                            <div class="col col-lg-2">
+                                Buttons here - Update, Suspend
+                            </div>
+                        </div>
+
+                    </li>
+                    &nbsp;
+                </ul>
+
+            </div>
+
+        </div>
     </form>
 
 

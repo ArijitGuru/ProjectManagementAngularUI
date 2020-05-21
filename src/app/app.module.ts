@@ -26,6 +26,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 //Service Imports
 import { UserserviceService } from './services/userservice.service';
+import { ProjectserviceService } from './services/projectservice.service';
 
 const appRoutes: Routes = [
   {path:'addproject', component:AddprojectComponent},
@@ -56,7 +57,7 @@ const appRoutes: Routes = [
     //NgbModule
     
   ],
-  providers: [UserserviceService],
+  providers: [UserserviceService, ProjectserviceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
