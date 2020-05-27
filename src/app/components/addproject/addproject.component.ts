@@ -29,6 +29,9 @@ export class AddprojectComponent implements OnInit {
 
   private isSearch: boolean = false;
 
+  isEdit: boolean = false;
+  order: boolean = false;
+
   constructor(public projectService: ProjectserviceService) { 
     this.priority = 0;
     this.projectService.getProjects().subscribe(projects => {
@@ -48,6 +51,12 @@ export class AddprojectComponent implements OnInit {
     }else {
       console.log("Project form submitted");
       console.log (this.project.projectName);
+      console.log(this.project);
+
+      this.projectService.addProject(this.project).subscribe(user => {
+        this.projects.unshift(user);
+    });
+
     }
     this.isSearch = false;
   }
@@ -59,6 +68,69 @@ export class AddprojectComponent implements OnInit {
 
   onResetClick(){
     this.priority = 0;
+    this.isEdit = false;
+  }
+
+
+  /*onSubmit(isEdit){
+    if (isEdit){
+      this.projectService.editUser(this.user).subscribe(user => {
+        this.users.unshift(this.user);
+        this.isEdit = false;
+    });
+    }else{
+      console.log(this.user);
+      this.projectService.addUser(this.user).subscribe(user => {
+        this.projects.unshift(user);
+        
+      });
+    }
+    
+  }
+*/
+  onEditClick(project){
+    this.isEdit = true;
+    this.project = project;
+  }
+
+  /*
+
+  onDeleteClick(userId){
+    this.projectService.deleteUser(userId).subscribe(user=>{
+      for (let i=0;i < this.projects.length; i++){
+        if (this.projects[i].userId == userId){
+          this.projects.splice(i, 1);
+        }
+      }
+    });
+  }
+*/
+
+  sortByFName(){
+    this.order = !this.order;
+    this.projects.sort((n1, n2)=>{
+      return (this.order)? n1.firstName.localeCompare(n2.firstName):n2.firstName.localeCompare(n1.firstName); 
+    });
+  }
+
+  sortByLName(){
+    this.order = !this.order;
+    this.projects.sort((n1, n2)=>{
+      return (this.order)? n1.lastName.localeCompare(n2.lastName):n2.lastName.localeCompare(n1.lastName); 
+    });
+  }
+
+  sortByEmpId(){
+    this.order = !this.order;
+    if(this.order){
+      this.projects.sort((a,b) => {
+        return a.employeeId-b.employeeId;
+      });
+    }else{
+      this.projects.sort((a,b) => {
+        return b.employeeId-a.employeeId;
+      });
+    }
   }
 
 }
