@@ -16,7 +16,7 @@ export class AddprojectComponent implements OnInit {
   projects:any[];
   project = {
     projectName:'',
-    setDateFlag:'',
+    dateFlag:false,
     startDate:'',
     endDate:'',
     projectPriority:'',
@@ -32,6 +32,8 @@ export class AddprojectComponent implements OnInit {
   isEdit: boolean = false;
   order: boolean = false;
 
+  
+
   constructor(public projectService: ProjectserviceService) { 
     this.priority = 0;
     this.projectService.getProjects().subscribe(projects => {
@@ -45,6 +47,8 @@ export class AddprojectComponent implements OnInit {
     
   }
 
+
+
   onSubmitProjectForm(){
     if (this.isSearch){
       console.log("Do nothing, search is clicked");
@@ -53,12 +57,20 @@ export class AddprojectComponent implements OnInit {
       console.log (this.project.projectName);
       console.log(this.project);
 
+
       this.projectService.addProject(this.project).subscribe(user => {
         this.projects.unshift(user);
     });
 
     }
     this.isSearch = false;
+  }
+
+  onChangeStatus(dateFlag:any){
+    console.log("Set date--> "  + dateFlag);
+    this.project.dateFlag = dateFlag;
+
+
   }
 
   onSearchClick(){
